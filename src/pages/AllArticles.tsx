@@ -169,7 +169,7 @@ const AllArticles = () => {
       <div className="container">
         <div className="font-bold text-4xl py-12">All articles</div>
       </div>
-      <div className="container grid grid-cols-3 gap-8">
+      <div className="container grid grid-cols-3 gap-8 max-sm:grid-cols-1">
         {articles.map((data) => (
           <BlogCard key={data.id} post={data} />
         ))}
