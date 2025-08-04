@@ -25,8 +25,15 @@ export const BlogCard = ({ post }: BlogCardProps) => {
     navigate(`/blog/${post.id}`);
   };
 
+  // Format the publishDate string
+  const formattedDate = new Date(post.publishDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
-    <Card 
+    <Card
       className="group overflow-hidden border-0 shadow-sm hover:shadow-card-hover transition-all duration-300 bg-card cursor-pointer"
       onClick={handleClick}
     >
@@ -37,24 +44,27 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
-      
+
       <CardHeader className="pb-3">
         <div className="flex items-center gap-2 mb-3">
-          <Badge variant="secondary" className="bg-primary-light text-primary font-medium">
+          <Badge
+            variant="secondary"
+            className="bg-primary-light text-primary font-medium"
+          >
             {post.category}
           </Badge>
         </div>
-        
+
         <h3 className="text-xl font-semibold leading-tight group-hover:text-primary transition-colors">
           {post.title}
         </h3>
       </CardHeader>
-      
+
       <CardContent className="pt-0">
         <p className="text-muted-foreground mb-4 line-clamp-3">
           {post.excerpt}
         </p>
-        
+
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
             <User className="w-4 h-4" />
@@ -62,7 +72,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           </div>
           <div className="flex items-center gap-1">
             <Calendar className="w-4 h-4" />
-            <span>{post.publishDate}</span>
+            <span>{formattedDate}</span>
           </div>
           <div className="flex items-center gap-1">
             <Clock className="w-4 h-4" />

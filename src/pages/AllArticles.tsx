@@ -3,9 +3,32 @@ import { Header } from "@/components/Header";
 import careerTipsImg from "@/assets/career-tips.jpg";
 import techTrendsImg from "@/assets/tech-trends.jpg";
 import startupNewsImg from "@/assets/startup-news.jpg";
-import { BlogCard } from "@/components/BlogCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 import { Footer } from "@/components/Footer";
+import { BlogCard } from "@/components/BlogCard";
+import { useEffect, useState } from "react";
+
 const AllArticles = () => {
+  const [articles, setArticles] = useState([]);
+
+  const fetchArticles = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const articles = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setArticles(articles);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
   const featuredPosts = [
     {
       id: "1",
@@ -41,7 +64,7 @@ const AllArticles = () => {
       featuredImage: startupNewsImg,
     },
     {
-      id: "1",
+      id: "4",
       title: "5 Essential Skills Every College Graduate Needs in 2024",
       excerpt:
         "From AI literacy to emotional intelligence, discover the key skills that will set you apart in today's competitive job market.",
@@ -52,7 +75,7 @@ const AllArticles = () => {
       featuredImage: careerTipsImg,
     },
     {
-      id: "2",
+      id: "5",
       title: "The Rise of AI Startups: What Young Professionals Should Know",
       excerpt:
         "Explore how artificial intelligence is reshaping the startup landscape and creating new opportunities for tech-savvy professionals.",
@@ -63,7 +86,7 @@ const AllArticles = () => {
       featuredImage: techTrendsImg,
     },
     {
-      id: "3",
+      id: "6",
       title: "From Dorm Room to Boardroom: Student Entrepreneurs Making Waves",
       excerpt:
         "Meet the college students who are building successful companies while still in school and learn from their journey.",
@@ -74,7 +97,7 @@ const AllArticles = () => {
       featuredImage: startupNewsImg,
     },
     {
-      id: "1",
+      id: "7",
       title: "5 Essential Skills Every College Graduate Needs in 2024",
       excerpt:
         "From AI literacy to emotional intelligence, discover the key skills that will set you apart in today's competitive job market.",
@@ -85,7 +108,7 @@ const AllArticles = () => {
       featuredImage: careerTipsImg,
     },
     {
-      id: "2",
+      id: "8",
       title: "The Rise of AI Startups: What Young Professionals Should Know",
       excerpt:
         "Explore how artificial intelligence is reshaping the startup landscape and creating new opportunities for tech-savvy professionals.",
@@ -96,7 +119,7 @@ const AllArticles = () => {
       featuredImage: techTrendsImg,
     },
     {
-      id: "3",
+      id: "9",
       title: "From Dorm Room to Boardroom: Student Entrepreneurs Making Waves",
       excerpt:
         "Meet the college students who are building successful companies while still in school and learn from their journey.",
@@ -107,7 +130,7 @@ const AllArticles = () => {
       featuredImage: startupNewsImg,
     },
     {
-      id: "1",
+      id: "10",
       title: "5 Essential Skills Every College Graduate Needs in 2024",
       excerpt:
         "From AI literacy to emotional intelligence, discover the key skills that will set you apart in today's competitive job market.",
@@ -118,7 +141,7 @@ const AllArticles = () => {
       featuredImage: careerTipsImg,
     },
     {
-      id: "2",
+      id: "11",
       title: "The Rise of AI Startups: What Young Professionals Should Know",
       excerpt:
         "Explore how artificial intelligence is reshaping the startup landscape and creating new opportunities for tech-savvy professionals.",
@@ -129,7 +152,7 @@ const AllArticles = () => {
       featuredImage: techTrendsImg,
     },
     {
-      id: "3",
+      id: "12",
       title: "From Dorm Room to Boardroom: Student Entrepreneurs Making Waves",
       excerpt:
         "Meet the college students who are building successful companies while still in school and learn from their journey.",
@@ -147,8 +170,8 @@ const AllArticles = () => {
         <div className="font-bold text-4xl py-12">All articles</div>
       </div>
       <div className="container grid grid-cols-3 gap-8">
-        {featuredPosts.map((post) => (
-          <BlogCard key={post.id} post={post} />
+        {articles.map((data) => (
+          <BlogCard key={data.id} post={data} />
         ))}
       </div>
       <Footer />
