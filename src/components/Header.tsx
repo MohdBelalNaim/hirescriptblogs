@@ -4,10 +4,10 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-hero-gradient rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-[#013B52] rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">H</span>
           </div>
-          <h1 className="text-xl font-bold bg-text-gradient bg-clip-text text-transparent">
+          <h1 className="text-xl text-[#013B52] font-bold ">
             Hirescript Blogs
           </h1>
         </div>

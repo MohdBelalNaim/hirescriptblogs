@@ -16,11 +16,11 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-text-gradient bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-[#013B52]">
             Your Career Journey Starts Here
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[#5A595F] mb-8 max-w-2xl mx-auto leading-relaxed">
             Discover career insights, startup trends, and professional tips
             designed for college students and young professionals ready to make
             their mark.
@@ -30,7 +30,7 @@ export const Hero = () => {
             <Link to="/all">
               <Button
                 size="lg"
-                className="bg-hero-gradient hover:opacity-90 transition-opacity text-lg px-8 py-3"
+                className="bg-[#d6fd60] font-bold text-lg text-[#013B52] px-8 py-3"
               >
                 Explore Articles
                 <ArrowRight className="ml-2 w-5 h-5" />
